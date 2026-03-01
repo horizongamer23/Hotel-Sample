@@ -53,9 +53,12 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <button className="bg-heritage-gold text-white px-6 py-2 text-sm uppercase tracking-widest hover:bg-heritage-brown transition-all duration-300 cursor-pointer">
+          <a 
+            href="#contact"
+            className="bg-heritage-gold text-white px-6 py-2 text-sm uppercase tracking-widest hover:bg-heritage-brown transition-all duration-300 cursor-pointer"
+          >
             Book Now
-          </button>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -86,9 +89,13 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button className="bg-heritage-gold text-white px-8 py-3 text-sm uppercase tracking-widest">
+            <a 
+              href="#contact"
+              className="bg-heritage-gold text-white px-8 py-3 text-sm uppercase tracking-widest"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Book Now
-            </button>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
@@ -140,12 +147,18 @@ const Hero = () => {
           transition={{ delay: 0.8 }}
           className="flex flex-wrap justify-center gap-4"
         >
-          <button className="bg-heritage-gold text-white px-10 py-4 text-sm uppercase tracking-widest hover:bg-white hover:text-heritage-gold transition-all duration-300 cursor-pointer">
+          <a 
+            href="#contact"
+            className="bg-heritage-gold text-white px-10 py-4 text-sm uppercase tracking-widest hover:bg-white hover:text-heritage-gold transition-all duration-300 cursor-pointer"
+          >
             Book Your Stay
-          </button>
-          <button className="border border-white text-white px-10 py-4 text-sm uppercase tracking-widest hover:bg-white hover:text-heritage-brown transition-all duration-300 cursor-pointer">
+          </a>
+          <a 
+            href="#rooms"
+            className="border border-white text-white px-10 py-4 text-sm uppercase tracking-widest hover:bg-white hover:text-heritage-brown transition-all duration-300 cursor-pointer"
+          >
             Explore Rooms
-          </button>
+          </a>
         </motion.div>
       </div>
       
@@ -271,9 +284,12 @@ const Rooms = () => {
                   </span>
                 ))}
               </div>
-              <button className="flex items-center gap-2 text-sm uppercase tracking-widest font-semibold text-heritage-brown hover:text-heritage-gold transition-colors cursor-pointer">
-                View Details <ChevronRight size={16} />
-              </button>
+              <a 
+                href="#contact"
+                className="flex items-center gap-2 text-sm uppercase tracking-widest font-semibold text-heritage-brown hover:text-heritage-gold transition-colors cursor-pointer"
+              >
+                Book Now <ChevronRight size={16} />
+              </a>
             </motion.div>
           ))}
         </div>
