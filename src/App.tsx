@@ -490,6 +490,33 @@ const Testimonials = () => {
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    checkIn: '',
+    checkOut: '',
+    fullName: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleWhatsAppSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { checkIn, checkOut, fullName, phone, message } = formData;
+    
+    const text = `*New Reservation Request - Hotel Jai Hari Vilas*%0A%0A` +
+      `*Name:* ${fullName}%0A` +
+      `*Phone:* ${phone}%0A` +
+      `*Check-In:* ${checkIn}%0A` +
+      `*Check-Out:* ${checkOut}%0A` +
+      `*Message:* ${message || 'N/A'}`;
+    
+    window.open(`https://wa.me/918949853812?text=${text}`, '_blank');
+  };
+
   return (
     <section id="contact" className="section-padding bg-heritage-beige">
       <div className="max-w-7xl mx-auto">
@@ -551,30 +578,70 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-white p-8 md:p-12 shadow-xl rounded-sm"
           >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleWhatsAppSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest font-semibold">Check-In</label>
-                  <input type="date" className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" />
+                  <input 
+                    type="date" 
+                    name="checkIn"
+                    required
+                    value={formData.checkIn}
+                    onChange={handleInputChange}
+                    className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" 
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs uppercase tracking-widest font-semibold">Check-Out</label>
-                  <input type="date" className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" />
+                  <input 
+                    type="date" 
+                    name="checkOut"
+                    required
+                    value={formData.checkOut}
+                    onChange={handleInputChange}
+                    className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" 
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-xs uppercase tracking-widest font-semibold">Full Name</label>
-                <input type="text" placeholder="Enter your name" className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" />
+                <input 
+                  type="text" 
+                  name="fullName"
+                  required
+                  placeholder="Enter your name" 
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-xs uppercase tracking-widest font-semibold">Phone Number</label>
-                <input type="tel" placeholder="+91" className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  placeholder="+91" 
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold" 
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-xs uppercase tracking-widest font-semibold">Message (Optional)</label>
-                <textarea rows={3} placeholder="Any special requests?" className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold resize-none"></textarea>
+                <textarea 
+                  rows={3} 
+                  name="message"
+                  placeholder="Any special requests?" 
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="w-full border-b border-heritage-sandstone py-2 focus:outline-none focus:border-heritage-gold resize-none"
+                ></textarea>
               </div>
-              <button className="w-full bg-heritage-gold text-white py-4 uppercase tracking-widest hover:bg-heritage-brown transition-all duration-300 shadow-lg cursor-pointer">
+              <button 
+                type="submit"
+                className="w-full bg-heritage-gold text-white py-4 uppercase tracking-widest hover:bg-heritage-brown transition-all duration-300 shadow-lg cursor-pointer"
+              >
                 Send Reservation Request
               </button>
             </form>
